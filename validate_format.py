@@ -54,7 +54,7 @@ def getStatTestResults( sdf, bdf, baseline = 'off', comparison = 'on', alpha_tes
         m_b, sd_b, n_b = getAverageValue(bookings_df_b)[0:3]
         m_c, sd_c, n_c = getAverageValue(bookings_df_c)[0:3]   
         t_pval = ttest(m_b, sd_b, n_b, m_c, sd_c, n_c, equal_var=True)[1]
-        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = power)*sd_b/m_b
+        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = type_two)*sd_b/m_b
         error = getTConfInt(n_b, sd_b, n_c, sd_c, alpha = alpha_test)
         printmd('**Average Booking Value**')
         print ('\n\tb = %5.4f, c = %5.4f\n\timpact = %5.4f%%, error margin = %5.4f%%, relative = %5.4f%%, MLDE (relative) = %5.4f%%, \n\tp = %5.4f (%s) \n\tstd (b, c) = (%5.4f, %5.4f)\n' % ( m_b, m_c, 100.0*((m_c - m_b) / m_b),error,100.0*error/m_b, mlde, t_pval,getSignificanceText(t_pval, p_t = alpha_test), sd_b, sd_c))
@@ -63,7 +63,7 @@ def getStatTestResults( sdf, bdf, baseline = 'off', comparison = 'on', alpha_tes
         m_c, sd_c, n_c = getTotalValue(bookings_df_c, sessions_df_c)[0:3]   
         t_pval = ttest(m_b, sd_b, n_b, m_c, sd_c, n_c, equal_var=True)[1]
         error = getTConfInt(n_b, sd_b, n_c, sd_c, alpha = alpha_test)    
-        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = power)*sd_b/m_b
+        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = type_two)*sd_b/m_b
         
         #print ('Total Booking Value : b = %5.4f, c = %5.4f, impact = %5.4f%%, p = %5.4f \n\tstd (b, c) = (%5.4f, %5.4f)\n' % ( m_b, m_c, 100.0*((m_c - m_b) / m_b), t_pval, sd_b, sd_c))
         printmd('**Total Booking Value**')
@@ -73,7 +73,7 @@ def getStatTestResults( sdf, bdf, baseline = 'off', comparison = 'on', alpha_tes
         m_c, sd_c, n_c = getEventsPerUser(bookings_df_c, sessions_df_c)[0:3]   
         t_pval = ttest(m_b, sd_b, n_b, m_c, sd_c, n_c, equal_var=True)[1]    
         error = getTConfInt(n_b, sd_b, n_c, sd_c, alpha = alpha_test)       
-        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = power)*sd_b/m_b
+        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = type_two)*sd_b/m_b
         
         printmd('**Bookings Per User**')
         print ('\n\tb = %5.4f, c = %5.4f\n\timpact = %5.4f%%, error margin = %5.4f%%, relative = %5.4f%%, MLDE (relative) = %5.4f%%, \n\tp = %5.4f (%s) \n\tstd (b, c) = (%5.4f, %5.4f)\n' % ( m_b, m_c, 100.0*((m_c - m_b) / m_b),error,100.0*error/m_b, mlde, t_pval,getSignificanceText(t_pval, p_t = alpha_test), sd_b, sd_c))
@@ -82,7 +82,7 @@ def getStatTestResults( sdf, bdf, baseline = 'off', comparison = 'on', alpha_tes
         m_c, sd_c, n_c = getEventsPerSession(bookings_df_c, sessions_df_c)[0:3]   
         t_pval = ttest(m_b, sd_b, n_b, m_c, sd_c, n_c, equal_var=True)[1]   
         error = getTConfInt(n_b, sd_b, n_c, sd_c, alpha = alpha_test)       
-        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = power)*sd_b/m_b
+        mlde = 100.0*getMLDE_t(n_b, n_c,alpha = alpha_test, default_typ2 = type_two)*sd_b/m_b
         
         printmd('**Bookings Per Session**')
         print ('\n\tb = %5.4f, c = %5.4f\n\timpact = %5.4f%%, error margin = %5.4f%%, relative = %5.4f%%, MLDE (relative) = %5.4f%%, \n\tp = %5.4f (%s) \n\tstd (b, c) = (%5.4f, %5.4f)\n' % ( m_b, m_c, 100.0*((m_c - m_b) / m_b),error,100.0*error/m_b, mlde, t_pval,getSignificanceText(t_pval, p_t = alpha_test), sd_b, sd_c))
